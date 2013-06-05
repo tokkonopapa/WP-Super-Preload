@@ -1,0 +1,194 @@
+# LANGUAGE (LOCALE) translation for WordPress.
+# Copyright (C) 2013 tokkonopapa.
+# This file is distributed under the same license as the WordPress package.
+# tokkonopapa <tokkonopapa@gmail.com>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Super Preload\n"
+"POT-Creation-Date: 2013-05-26 00:18+0900\n"
+"PO-Revision-Date: 2013-05-26 00:18+0900\n"
+"Last-Translator: tokkonopapa <tokkonopapa@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.5\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+# description
+msgid "This plugin helps to keep whole pages of your site always being cached in the fresh based on the sitemap.xml and your own settings."
+msgstr ""
+
+#: ../inc/admin.php:79
+#, php-format
+msgid "%s: You need WordPress 3.1.0 or higher and PHP 5 with libcurl."
+msgstr ""
+
+#: ../inc/admin.php:115 ../inc/admin.php:182
+msgid "Settings"
+msgstr ""
+
+#: ../inc/admin.php:156 ../inc/admin.php:157
+msgid "WP Super Preload"
+msgstr ""
+
+#: ../inc/admin.php:243
+msgid "Basic settings"
+msgstr ""
+
+#: ../inc/admin.php:264
+msgid "Trigger at the garbage collection WP-Cron event"
+msgstr ""
+
+#: ../inc/admin.php:279
+msgid "Trigger at the scheduled WP-Cron event"
+msgstr ""
+
+#: ../inc/admin.php:296
+msgid "URLs of sitemap"
+msgstr ""
+
+#: ../inc/admin.php:311
+msgid "Additional contents"
+msgstr ""
+
+#: ../inc/admin.php:326
+msgid "URLs of additional pages"
+msgstr ""
+
+#: ../inc/admin.php:341
+msgid "Maximum number of pages"
+msgstr ""
+
+#: ../inc/admin.php:356
+msgid "Additional UA string"
+msgstr ""
+
+#: ../inc/admin.php:374
+msgid "Advanced settings"
+msgstr ""
+
+#: ../inc/admin.php:382
+msgid "Split preloading"
+msgstr ""
+
+#: ../inc/admin.php:397
+msgid "Number of requests per split"
+msgstr ""
+
+#: ../inc/admin.php:412
+msgid "Number of parallel requests"
+msgstr ""
+
+#: ../inc/admin.php:427
+msgid "Interval between parallel requests"
+msgstr ""
+
+#: ../inc/admin.php:433
+msgid "[milliseconds]"
+msgstr ""
+
+#: ../inc/admin.php:443
+msgid "Test preloading"
+msgstr ""
+
+#: ../inc/admin.php:451
+msgid "Preload now"
+msgstr ""
+
+#: ../inc/admin.php:489
+msgid "Enable"
+msgstr ""
+
+#: ../inc/admin.php:520 ../inc/admin.php:548
+msgid "Disable"
+msgstr ""
+
+#: ../inc/admin.php:534
+msgid "Other Plugin"
+msgstr ""
+
+#: ../inc/admin.php:540 ../inc/admin.php:566
+msgid "Next event at"
+msgstr ""
+
+#: ../inc/admin.php:549
+msgid "Once Hourly"
+msgstr ""
+
+#: ../inc/admin.php:550
+msgid "Twice Daily"
+msgstr ""
+
+#: ../inc/admin.php:551
+msgid "Once Daily"
+msgstr ""
+
+#: ../inc/admin.php:560
+msgid "starting from"
+msgstr ""
+
+#: ../inc/admin.php:568
+msgid "Current time"
+msgstr ""
+
+#: ../inc/admin.php:598
+msgid "Settings has been successfully updated."
+msgstr ""
+
+#: ../inc/admin.php:641
+msgid "Some values must be an integer greater than or equal to zero."
+msgstr ""
+
+#: ../inc/admin.php:653
+msgid "Some values must be a natural number."
+msgstr ""
+
+#: ../inc/admin.php:714
+msgid "Forbidden"
+msgstr ""
+
+#: ../inc/super-preload.php:456
+#, php-format
+msgid "%s %d pages (%.3f sec)"
+msgstr ""
+
+#: ../inc/super-preload.php:458
+msgid "Number of pages to be preloaded:"
+msgstr ""
+
+#: ../inc/super-preload.php:459
+msgid "Number of requested pages:"
+msgstr ""
+
+#: ../inc/admin.php:render_field
+msgid "Front pages"
+msgstr ""
+
+#: ../inc/admin.php:render_field
+msgid "Fixed pages"
+msgstr ""
+
+#: ../inc/admin.php:render_field
+msgid "Categories"
+msgstr ""
+
+#: ../inc/admin.php:render_field
+msgid "Tags"
+msgstr ""
+
+#: ../inc/admin.php:render_field
+msgid "Authors"
+msgstr ""
+
+#: ../inc/admin.php:render_field
+msgid "Monthly archives"
+msgstr ""
+
+#: ../inc/admin.php:render_field
+msgid "Yearly archives"
+msgstr ""

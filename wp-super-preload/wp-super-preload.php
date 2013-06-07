@@ -27,7 +27,7 @@ if ( ! defined( 'WPINC' ) )
 if ( ! is_admin() && ! defined( 'DOING_AJAX' ) && ! defined( 'DOING_CRON' ) && ! isset( $_GET['doing_wp_cron'] ) )
 	return;
 
-define( 'WP_SUPER_PRELOAD_DEBUG', TRUE ); // output log
+define( 'WP_SUPER_PRELOAD_DEBUG', FALSE ); // output log
 define( 'WP_SUPER_PRELOAD_PATH', plugin_dir_path( __FILE__ ) ); // @since 2.8
 define( 'WP_SUPER_PRELOAD_GMT_OFFSET', intval( get_option( 'gmt_offset' ) ) * 3600 );
 

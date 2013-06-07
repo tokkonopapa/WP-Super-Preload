@@ -2,24 +2,25 @@
 /**
  * WP Super Preload - Connect and Communicate URLs
  *
- * @package WP Super Preload
- * @version 0.9.0
- * @author tokkonopapa
- * @copyright tokkonopapa@gmail.com
+ * @package   wp-super-preload
+ * @author    tokkonopapa
+ * @license   GPL-2.0+
+ * @link      http://tokkono.cute.coocan.jp/blog/slow/
+ * @copyright 2013 tokkonopapa (tokkonopapa@yahoo.com)
  *
  * @see https://github.com/jmathai/php-multi-curl
  * @see https://github.com/petewarden/ParallelCurl
  */
 
 class WP_Super_Fetch {
-
+/*
 	static function access_log( $msg = NULL ) {
 		$msg = trim( $msg );
 		$fp = @fopen( WP_SUPER_PRELOAD_PATH . "access.log", is_null( $msg ) ? 'w' : 'a' );
 		@fwrite( $fp, date( "Y/m/d,D,H:i:s" ) . " ${msg}\n" );
 		@fclose( $fp );
 	}
-
+*/
 	/**
 	 * Get urls from sitemap
 	 *
@@ -102,8 +103,8 @@ class WP_Super_Fetch {
 		$res = 0;
 		foreach ( $url_list as $i => $url ) {
 			// if CURLOPT_FAILONERROR is set to false, curl_error() will return empty.
-			// $err = curl_error( $ch_list[$i] ); // PHP 4 >= 4.0.3, PHP 5
-			// if ( empty( $err ) ) {
+			// So curl_getinfo() should be used to get HTTP status code.
+			// if ( empty( ( $err = curl_error( $ch_list[$i] ) ) ) { // PHP 4 >= 4.0.3, PHP 5
 			$err = intval( curl_getinfo( $ch_list[$i], CURLINFO_HTTP_CODE ) ); // PHP 4 >= 4.0.4, PHP 5
 			if ( $err < 400 ) {
 //				self::access_log( curl_multi_getcontent( $ch_list[$i] ) );

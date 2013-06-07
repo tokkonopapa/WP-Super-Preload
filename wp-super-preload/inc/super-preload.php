@@ -18,7 +18,7 @@ class WP_Super_Preload {
 	 *--------------------------------------------*/
 	const TEXTDOMAIN  = 'super-preload';
 	const EVENT_HOOK  = 'super_preload_event';
-	const OPTION_NANE = 'super_preload_settings';
+	const OPTION_DATA = 'super_preload_settings';
 	const UPDATE_DATA = 'super_preload_updates';
 
 	/**
@@ -45,7 +45,7 @@ class WP_Super_Preload {
 	 */
 	protected static $option_table = array(
 		// Read only while preloading
-		self::OPTION_NANE => array(
+		self::OPTION_DATA => array(
 			// Basic settings
 			'sitemap_urls'         => '',            // textarea
 			'additional_contents'  => array(         // checkbox
@@ -68,7 +68,7 @@ class WP_Super_Preload {
 			'split_preload'        => TRUE,          // checkbox
 			'requests_per_split'   => '100',         // text
 			'parallel_requests'    => '10',          // text in numbers
-			'interval_in_msec'     => '100',         // text in milliseconds
+			'interval_in_msec'     => '250',         // text in milliseconds
 			'timeout_per_fetch'    => '60',          // text in seconds
 			'preload_time_limit'   => '600',         // text in seconds
 			'initial_delay'        => '10',          // text in seconds
@@ -121,7 +121,7 @@ class WP_Super_Preload {
 	 */
 	public static function activate() {
 		// Set default sitemap url
-		self::$option_table[ self::OPTION_NANE ]['sitemap_urls'] = home_url( '/' ) . 'sitemap.xml';
+		self::$option_table[ self::OPTION_DATA ]['sitemap_urls'] = home_url( '/' ) . 'sitemap.xml';
 
 		// Register options into database table
 		foreach ( self::$option_table as $key => $value ) {
@@ -129,7 +129,7 @@ class WP_Super_Preload {
 		}
 
 		// Register scheduled event
-		self::register_schedule( get_option( self::OPTION_NANE ) );
+		self::register_schedule( get_option( self::OPTION_DATA ) );
 	}
 
 	/**
@@ -190,7 +190,7 @@ class WP_Super_Preload {
 	 * Register the action connected with garbage collection
 	 */
 	private function register_actions() {
-		$options = get_option( self::OPTION_NANE ); // @since 1.5.0
+		$options = get_option( self::OPTION_DATA ); // @since 1.5.0
 
 		// Synchronize with garbage collection
 		if ( 'disable' !== $options['synchronize_gc'] && ! empty( $options['synchronize_gc'] ) ) {
@@ -208,7 +208,7 @@ class WP_Super_Preload {
 		$next = wp_next_scheduled( self::EVENT_HOOK );
 		if ( FALSE !== $next ) {
 			add_action( self::EVENT_HOOK, array( $this, 'exec_preload' ) );
-			( WP_SUPER_PRELOAD_DEBUG and self::debug_log( 'next hook at ' . date( 'd/M/Y H:i:s', intval( $next ) + WP_SUPER_PRELOAD_GMT_OFFSET ) ) );
+			( WP_SUPER_PRELOAD_DEBUG and self::debug_log( 'scheduled hook at ' . date( 'd/M/Y H:i:s', intval( $next ) + WP_SUPER_PRELOAD_GMT_OFFSET ) ) );
 		}
 	}
 
@@ -238,7 +238,7 @@ class WP_Super_Preload {
 			// @link http://codex.wordpress.org/Class_Reference/WP_Query
 			$query = new WP_Query( 'post_type=post' ); // 'post_status=publish'
 			$n = $query->max_num_pages;
-			for ( $i = 2; $i <= $n; $i++ ) {
+			for ( $i = 2; $i < $n; $i++ ) {
 				$urls[] = "$pages/$i/";
 			}
 			unset( $query );
@@ -304,7 +304,7 @@ class WP_Super_Preload {
 				$urls[] = $url = get_author_posts_url( $page->ID ); // @since 2.1.0
 				$query = new WP_Query( "author=$page->ID" );
 				$n = $query->max_num_pages;
-				for ( $i = 2; $i <= $n; $i++ ) {
+				for ( $i = 2; $i < $n; $i++ ) {
 					$urls[] = untrailingslashit( $url ) . "/page/$i/";
 				}
 				unset( $query );
@@ -392,7 +392,7 @@ class WP_Super_Preload {
 	public function exec_preload( $mode = NULL ) {
 		$time = microtime( TRUE ); // PHP 4, PHP 5
 		$home = home_url(); // @since 3.0.0
-		$options = get_option( self::OPTION_NANE ); // @since 1.5.0
+		$options = get_option( self::OPTION_DATA ); // @since 1.5.0
 
 		// Ignore client aborts and disallow the script to run forever
 		ignore_user_abort( TRUE ); // PHP 4, PHP 5
@@ -402,8 +402,8 @@ class WP_Super_Preload {
 		require_once WP_SUPER_PRELOAD_PATH . 'inc/fetch.php';
 
 		// Wait for synchronizing garbage collection
-		if ( 'fetch-now' !== $mode && 'no-fetch' !== $mode )
-			sleep( intval( $options['initial_delay'] ) ); // PHP 4, PHP 5
+//		if ( 'fetch-now' !== $mode && 'no-fetch' !== $mode )
+//			sleep( intval( $options['initial_delay'] ) ); // PHP 4, PHP 5
 
 		// Get URLs from sitemap
 		$urls = $this->get_urls( $options['sitemap_urls'], $home );
@@ -454,7 +454,7 @@ class WP_Super_Preload {
 							$ua
 						);
 					} catch ( Exception $e ) {
-						( WP_SUPER_PRELOAD_DEBUG and self::debug_log( trim( $e->getMessage() ) . "\n" ) );
+						( WP_SUPER_PRELOAD_DEBUG and self::debug_log( $e->getMessage() ) );
 					}
 					usleep( $interval ); // PHP 4, PHP 5
 				}

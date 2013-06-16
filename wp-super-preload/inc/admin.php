@@ -286,7 +286,7 @@ class WP_Super_Preload_Admin extends WP_Super_Preload {
 				'field'  => $field,
 				'value'  => $options[ $field ],
 				'hh'     => sprintf( '%02d', intval( $options['preload_hh'] ) ),
-				'mm'     => sprintf( '%02d', intval( $options['preload_mm'] ) )
+				'mm'     => sprintf( '%02d', intval( $options['preload_mm'] ) ),
 			)
 		);
 
@@ -301,7 +301,7 @@ class WP_Super_Preload_Admin extends WP_Super_Preload {
 				'type'   => 'textarea',
 				'option' => $this->option_name[0],
 				'field'  => $field,
-				'value'  => $options[ $field ]
+				'value'  => $options[ $field ],
 			)
 		);
 
@@ -316,7 +316,7 @@ class WP_Super_Preload_Admin extends WP_Super_Preload {
 				'type'   => 'checkboxes',
 				'option' => $this->option_name[0],
 				'field'  => $field,
-				'value'  => $options[ $field ]
+				'value'  => $options[ $field ],
 			)
 		);
 
@@ -331,7 +331,7 @@ class WP_Super_Preload_Admin extends WP_Super_Preload {
 				'type'   => 'textarea',
 				'option' => $this->option_name[0],
 				'field'  => $field,
-				'value'  => $options[ $field ]
+				'value'  => $options[ $field ],
 			)
 		);
 
@@ -346,7 +346,7 @@ class WP_Super_Preload_Admin extends WP_Super_Preload {
 				'type'   => 'text',
 				'option' => $this->option_name[0],
 				'field'  => $field,
-				'value'  => $options[ $field ]
+				'value'  => $options[ $field ],
 			)
 		);
 
@@ -361,7 +361,7 @@ class WP_Super_Preload_Admin extends WP_Super_Preload {
 				'type'   => 'text',
 				'option' => $this->option_name[0],
 				'field'  => $field,
-				'value'  => $options[ $field ]
+				'value'  => $options[ $field ],
 			)
 		);
 
@@ -376,6 +376,7 @@ class WP_Super_Preload_Admin extends WP_Super_Preload {
 			$this->option_slug[0]
 		);
 
+		$update = get_option( $this->option_name[1] );
 		$field = 'split_preload';
 		add_settings_field(
 			$this->option_name[0] . "_$field",
@@ -387,7 +388,8 @@ class WP_Super_Preload_Admin extends WP_Super_Preload {
 				'type'   => 'checkbox',
 				'option' => $this->option_name[0],
 				'field'  => $field,
-				'value'  => $options[ $field ]
+				'value'  => $options[ $field ],
+				'after'  => '&nbsp;<span>(&nbsp;' . sprintf( __( "next preloading will start from: %d", self::TEXTDOMAIN ), $update['next_preload'] ) . '&nbsp;)</span>',
 			)
 		);
 
@@ -402,7 +404,7 @@ class WP_Super_Preload_Admin extends WP_Super_Preload {
 				'type'   => 'text',
 				'option' => $this->option_name[0],
 				'field'  => $field,
-				'value'  => $options[ $field ]
+				'value'  => $options[ $field ],
 			)
 		);
 
@@ -417,7 +419,7 @@ class WP_Super_Preload_Admin extends WP_Super_Preload {
 				'type'   => 'text',
 				'option' => $this->option_name[0],
 				'field'  => $field,
-				'value'  => $options[ $field ]
+				'value'  => $options[ $field ],
 			)
 		);
 
@@ -433,7 +435,7 @@ class WP_Super_Preload_Admin extends WP_Super_Preload {
 				'after'  => __( '[milliseconds]', self::TEXTDOMAIN ),
 				'option' => $this->option_name[0],
 				'field'  => $field,
-				'value'  => $options[ $field ]
+				'value'  => $options[ $field ],
 			)
 		);
 
@@ -448,7 +450,7 @@ class WP_Super_Preload_Admin extends WP_Super_Preload {
 				'type'   => 'button',
 				'option' => $this->option_name[0],
 				'field'  => $field,
-				'value'  => __( 'Preload now', self::TEXTDOMAIN )
+				'value'  => __( 'Preload now', self::TEXTDOMAIN ),
 			)
 		);
 	} // end render_settings

@@ -68,21 +68,23 @@ class WP_Super_Fetch {
 
 		foreach ( $url_list as $i => $url ) {
 			$ch_list[$i] = curl_init( $url ); // PHP 4 >= 4.0.2, PHP 5
+			curl_setopt( $ch_list[$i], CURLOPT_FAILONERROR, TRUE );
 			curl_setopt( $ch_list[$i], CURLOPT_RETURNTRANSFER, TRUE );
-//			curl_setopt( $ch_list[$i], CURLOPT_FAILONERROR, TRUE );
 			curl_setopt( $ch_list[$i], CURLOPT_FOLLOWLOCATION, TRUE );
-			curl_setopt( $ch_list[$i], CURLOPT_MAXREDIRS, 3 );
+			curl_setopt( $ch_list[$i], CURLOPT_MAXREDIRS, 5 );
+			curl_setopt( $ch_list[$i], CURLOPT_HEADER, FALSE );
 
 			// No cookies
 			curl_setopt( $ch_list[$i], CURLOPT_COOKIE, '' );
 
 			// Ignore SSL Certification
 			curl_setopt( $ch_list[$i], CURLOPT_SSL_VERIFYPEER, FALSE );
-			curl_setopt( $ch_list[$i], CURLOPT_SSL_VERIFYHOST, FALSE );
 
 			// Set timeout
-			if ( $timeout )
+			if ( $timeout ) {
+				curl_setopt( $ch_list[$i], CURLOPT_CONNECTTIMEOUT, $timeout );
 				curl_setopt( $ch_list[$i], CURLOPT_TIMEOUT, $timeout );
+			}
 
 			// Set User Agent
 			if ( ! is_null( $user_agent ) )
@@ -102,11 +104,11 @@ class WP_Super_Fetch {
 		// Get status of each request
 		$res = 0;
 		foreach ( $url_list as $i => $url ) {
-			// if CURLOPT_FAILONERROR is set to false, curl_error() will return empty.
-			// So curl_getinfo() should be used to get HTTP status code.
-			// if ( empty( ( $err = curl_error( $ch_list[$i] ) ) ) { // PHP 4 >= 4.0.3, PHP 5
-			$err = intval( curl_getinfo( $ch_list[$i], CURLINFO_HTTP_CODE ) ); // PHP 4 >= 4.0.4, PHP 5
-			if ( $err < 400 ) {
+			// CURLOPT_FAILONERROR should be set to true.
+			$err = curl_error( $ch_list[$i] ); // PHP 4 >= 4.0.3, PHP 5
+			if ( empty( $err ) ) {
+//			$err = intval( curl_getinfo( $ch_list[$i], CURLINFO_HTTP_CODE ) ); // PHP 4 >= 4.0.4, PHP 5
+//			if ( $err < 400 ) {
 //				self::access_log( curl_multi_getcontent( $ch_list[$i] ) );
 				$res++;
 			} else {

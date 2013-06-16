@@ -14,6 +14,8 @@
  * Version: 1.0.0
  * Author: tokkonopapa
  * Author URI: http://tokkono.cute.coocan.jp/blog/slow/
+ * Text Domain: super-preload
+ * Domain Path: /lang/
  * Requires: WordPress 3.1.0 or higher / PHP 5 with libcurl
  * Compatible up to: WordPress 3.5.1
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt

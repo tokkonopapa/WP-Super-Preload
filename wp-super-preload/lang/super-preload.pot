@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WP Super Preload\n"
-"POT-Creation-Date: 2013-05-26 00:18+0900\n"
-"PO-Revision-Date: 2013-05-26 00:18+0900\n"
+"POT-Creation-Date: 2013-06-08 10:06+0900\n"
+"PO-Revision-Date: 2013-06-08 10:07+0900\n"
 "Last-Translator: tokkonopapa <tokkonopapa@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -72,96 +72,101 @@ msgstr ""
 msgid "Advanced settings"
 msgstr ""
 
-#: ../inc/admin.php:382
+#: ../inc/admin.php:383
 msgid "Split preloading"
 msgstr ""
 
-#: ../inc/admin.php:397
+#: ../inc/admin.php:392
+#, php-format
+msgid "next preloading will start from: %d"
+msgstr ""
+
+#: ../inc/admin.php:399
 msgid "Number of requests per split"
 msgstr ""
 
-#: ../inc/admin.php:412
+#: ../inc/admin.php:414
 msgid "Number of parallel requests"
 msgstr ""
 
-#: ../inc/admin.php:427
+#: ../inc/admin.php:429
 msgid "Interval between parallel requests"
 msgstr ""
 
-#: ../inc/admin.php:433
+#: ../inc/admin.php:435
 msgid "[milliseconds]"
 msgstr ""
 
-#: ../inc/admin.php:443
+#: ../inc/admin.php:445
 msgid "Test preloading"
 msgstr ""
 
-#: ../inc/admin.php:451
+#: ../inc/admin.php:453
 msgid "Preload now"
 msgstr ""
 
-#: ../inc/admin.php:489
+#: ../inc/admin.php:491
 msgid "Enable"
 msgstr ""
 
-#: ../inc/admin.php:520 ../inc/admin.php:548
+#: ../inc/admin.php:522 ../inc/admin.php:550
 msgid "Disable"
 msgstr ""
 
-#: ../inc/admin.php:534
+#: ../inc/admin.php:536
 msgid "Other Plugin"
 msgstr ""
 
-#: ../inc/admin.php:540 ../inc/admin.php:566
+#: ../inc/admin.php:542 ../inc/admin.php:568
 msgid "Next event at"
 msgstr ""
 
-#: ../inc/admin.php:549
+#: ../inc/admin.php:551
 msgid "Once Hourly"
 msgstr ""
 
-#: ../inc/admin.php:550
+#: ../inc/admin.php:552
 msgid "Twice Daily"
 msgstr ""
 
-#: ../inc/admin.php:551
+#: ../inc/admin.php:553
 msgid "Once Daily"
 msgstr ""
 
-#: ../inc/admin.php:560
+#: ../inc/admin.php:562
 msgid "starting from"
 msgstr ""
 
-#: ../inc/admin.php:568
+#: ../inc/admin.php:570
 msgid "Current time"
 msgstr ""
 
-#: ../inc/admin.php:598
+#: ../inc/admin.php:600
 msgid "Settings has been successfully updated."
 msgstr ""
 
-#: ../inc/admin.php:641
+#: ../inc/admin.php:643
 msgid "Some values must be an integer greater than or equal to zero."
 msgstr ""
 
-#: ../inc/admin.php:653
+#: ../inc/admin.php:655
 msgid "Some values must be a natural number."
 msgstr ""
 
-#: ../inc/admin.php:714
+#: ../inc/admin.php:716
 msgid "Forbidden"
 msgstr ""
 
-#: ../inc/super-preload.php:456
+#: ../inc/super-preload.php:474
 #, php-format
 msgid "%s %d pages (%.3f sec)"
 msgstr ""
 
-#: ../inc/super-preload.php:458
+#: ../inc/super-preload.php:476
 msgid "Number of pages to be preloaded:"
 msgstr ""
 
-#: ../inc/super-preload.php:459
+#: ../inc/super-preload.php:477
 msgid "Number of requested pages:"
 msgstr ""
 

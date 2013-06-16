@@ -366,13 +366,14 @@ class WP_Super_Preload {
 	private function get_split( $opt_requests, $total ) {
 		$updates = get_option( self::UPDATE_DATA );
 
-		$start = $updates['next_preload'];
-		$updates['next_preload'] += intval( $opt_requests );
+		$start = intval( $updates['next_preload'] );
+		$updates['next_preload'] = $start + intval( $opt_requests );
 
 		if( $updates['next_preload'] >= $total )
 			$updates['next_preload'] = 0;
 
-		update_option( self::UPDATE_DATA, $updates ); // @since 1.0.0
+		if ( $total > 0 )
+			update_option( self::UPDATE_DATA, $updates ); // @since 1.0.0
 
 		return $start;
 	}

@@ -93,7 +93,7 @@ class WP_Super_Preload {
 		$this->plugin_slug = dirname( $this->plugin_base );
 
 		// Load plugin text domain
-		add_action( 'init', array( $this, 'plugin_textdomain' ) ); // @since 1.2.0
+		add_action( 'plugins_loaded', array( $this, 'plugin_textdomain' ) ); // @since 1.2.0
 
 		// Register scheduled actions
 		$this->register_actions();

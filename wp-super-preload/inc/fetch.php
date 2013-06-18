@@ -107,9 +107,8 @@ class WP_Super_Fetch {
 			// CURLOPT_FAILONERROR should be set to true.
 			$err = curl_error( $ch_list[$i] ); // PHP 4 >= 4.0.3, PHP 5
 			if ( empty( $err ) ) {
-//			$err = intval( curl_getinfo( $ch_list[$i], CURLINFO_HTTP_CODE ) ); // PHP 4 >= 4.0.4, PHP 5
-//			if ( $err < 400 ) {
 //				self::access_log( curl_multi_getcontent( $ch_list[$i] ) );
+//				self::access_log( $url );
 				$res++;
 			} else {
 //				self::access_log( "$err at $url" );

@@ -68,8 +68,8 @@ class WP_Super_Preload {
 			'split_preload'        => TRUE,          // checkbox
 			'requests_per_split'   => '100',         // text
 			'parallel_requests'    => '10',          // text in numbers
-			'interval_in_msec'     => '250',         // text in milliseconds
-			'timeout_per_fetch'    => '60',          // text in seconds
+			'interval_in_msec'     => '500',         // text in milliseconds
+			'timeout_per_fetch'    => '10',          // text in seconds
 			'preload_time_limit'   => '600',         // text in seconds
 			'initial_delay'        => '10',          // text in seconds
 		),

@@ -96,10 +96,18 @@ class WP_Super_Fetch {
 		// Run the sub-connections of the current cURL handle
 		// @link http://www.php.net/manual/function.curl-multi-init.php
 		// @link http://www.php.net/manual/function.curl-multi-exec.php
-		$running = NULL;
+		$active = NULL;
 		do {
-			curl_multi_exec( $mh, $running ); // PHP 5
-		} while ( $running );
+			$res = curl_multi_exec( $mh, $active ); // PHP 5
+		} while ( CURLM_CALL_MULTI_PERFORM === $res );
+	
+		while ( $active && CURLM_OK === $res ) {
+			if ( curl_multi_select( $mh ) !== -1 ) { // PHP 5
+				do {
+					$res = curl_multi_exec( $mh, $active );
+				} while ( CURLM_CALL_MULTI_PERFORM === $res );
+			}
+		}
 
 		// Get status of each request
 		$res = 0;

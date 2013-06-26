@@ -53,11 +53,11 @@ class WP_Super_Fetch {
 	 * @param array $url_list: Array of URLs to be connected.
 	 * @param int $timeout: Time out in seconds. If 0 then forever.
 	 * @param string $user_agent: `User-Agent:` header for request.
-	 * @return array of string: Array of contents.
+	 * @return int: A Number of urls which have been fetched successfully.
 	 */
 	static public function fetch_multi_urls(
 		$url_list,
-		$timeout = 0,
+		$timeout = 15,
 		$user_agent = NULL
 	) {
 		// Prepare multi handle
@@ -80,11 +80,9 @@ class WP_Super_Fetch {
 			// Ignore SSL Certification
 			curl_setopt( $ch_list[$i], CURLOPT_SSL_VERIFYPEER, FALSE );
 
-			// Set timeout
-			if ( $timeout ) {
-				curl_setopt( $ch_list[$i], CURLOPT_CONNECTTIMEOUT, $timeout );
-				curl_setopt( $ch_list[$i], CURLOPT_TIMEOUT, $timeout );
-			}
+			// Set timeout ('0' means indefinitely)
+			curl_setopt( $ch_list[$i], CURLOPT_TIMEOUT, $timeout );
+			curl_setopt( $ch_list[$i], CURLOPT_CONNECTTIMEOUT, $timeout );
 
 			// Set User Agent
 			if ( ! is_null( $user_agent ) )

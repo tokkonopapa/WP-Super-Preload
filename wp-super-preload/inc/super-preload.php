@@ -447,16 +447,27 @@ class WP_Super_Preload {
 			foreach ( $user_agent as $ua ) {
 				$count = 0;
 				$pages = $urls;
+
 				while ( count( $pages ) ) {
-					try {
+					// Fetch pages
+					$retry = array();
+					$count += WP_Super_Fetch::fetch_multi_urls(
+						array_splice( $pages, 0, $requests ),
+						$timeout,
+						$ua,
+						&$retry
+					);
+
+					// Retry
+					if ( ! empty( $retry ) ) {
 						$count += WP_Super_Fetch::fetch_multi_urls(
-							array_splice( $pages, 0, $requests ),
+							$retry,
 							$timeout,
 							$ua
 						);
-					} catch ( Exception $e ) {
-						( WP_SUPER_PRELOAD_DEBUG and self::debug_log( $e->getMessage() ) );
 					}
+
+					// Take a break
 					usleep( $interval ); // PHP 4, PHP 5
 				}
 			}

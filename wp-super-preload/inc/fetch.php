@@ -53,12 +53,14 @@ class WP_Super_Fetch {
 	 * @param array $url_list: Array of URLs to be connected.
 	 * @param int $timeout: Time out in seconds. If 0 then forever.
 	 * @param string $user_agent: `User-Agent:` header for request.
+	 * @param array &$fail: Unfetched urls because of error.
 	 * @return int: A Number of urls which have been fetched successfully.
 	 */
 	static public function fetch_multi_urls(
 		$url_list,
 		$timeout = 15,
-		$user_agent = NULL
+		$user_agent = NULL,
+		$fail = array()
 	) {
 		// Prepare multi handle
 		$mh = curl_multi_init(); // PHP 5
@@ -118,7 +120,7 @@ class WP_Super_Fetch {
 				$res++;
 			} else {
 //				self::access_log( "$err at $url" );
-				throw new RuntimeException( "$err at $url" ); // PHP 5 >= 5.1.0
+				$fail[] = $url;
 			}
 
 			curl_multi_remove_handle( $mh, $ch_list[$i] ); // PHP 5

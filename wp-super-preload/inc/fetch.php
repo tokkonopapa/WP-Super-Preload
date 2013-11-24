@@ -32,7 +32,8 @@ class WP_Super_Fetch {
 	 */
 	static public function get_urls_sitemap( $sitemap ) {
 		// Get contents of sitemap
-		$xml = wp_remote_retrieve_body( wp_remote_get( $sitemap ) ); // @since 2.7.0
+		$response = wp_remote_get( $sitemap );
+		$xml = wp_remote_retrieve_body( $response ); // @since 2.7.0
 
 		// Get URLs from sitemap
 		// @todo: consider sub sitemap.

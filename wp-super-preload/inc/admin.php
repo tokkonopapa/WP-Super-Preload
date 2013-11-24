@@ -21,8 +21,8 @@ class WP_Super_Preload_Admin extends WP_Super_Preload {
 	/**
 	 * Option name and group.
 	 */
-	private static $option_name = array();
-	private static $option_slug = array();
+	private $option_name = array();
+	private $option_slug = array();
 
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.

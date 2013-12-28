@@ -38,6 +38,12 @@ It makes expiration time aligned in a short period of time.
 
 3. Split preloading is supported to reduce the load of your server.
 
+
+### Installation:
+
+1. Upload `wp-super-preload` to the `/wp-content/plugins/` directory,
+2. Activate the plugin through the 'Plugins' menu in WordPress.
+
 ### Settings:
 
 #### Basic settings
@@ -96,6 +102,10 @@ If you have 1000 pages to be cached and the expiration time is 3600 seconds,
 you can set the garbage collection interval to 600 seconds (in your caching 
 plugin's settings) and 200 pages to be requested in each garbage collection 
 (in this plugin's settings).
+
+### Notice:
+Current version doesn't support recursive sub-sitemap. So it can not be used 
+with [WordPress SEO by Yoast][SEO] which makes sub-sitemap.
 
 ### Recommendation:
 
@@ -164,3 +174,4 @@ Licensed under the [GPL v2][GPL] or later.
 [GEN]: http://wordpress.org/extend/plugins/generate-cache/
 [GPL]: http://www.gnu.org/licenses/gpl-2.0.html
 [WIK]: http://en.wikipedia.org/wiki/Cache_%28computing%29 "Cache (computing) - Wikipedia, the free encyclopedia"
+[SEO]: http://wordpress.org/plugins/wordpress-seo/ "WordPress &#8250; WordPress SEO by Yoast &laquo; WordPress Plugins"

@@ -455,7 +455,7 @@ class WP_Super_Preload {
 						array_splice( $pages, 0, $requests ),
 						$timeout,
 						$ua,
-						&$retry
+						$retry
 					);
 
 					// Retry

@@ -61,7 +61,7 @@ class WP_Super_Fetch {
 		$url_list,
 		$timeout = 15,
 		$user_agent = NULL,
-		$fail = array()
+		&$fail = array()
 	) {
 		// Prepare multi handle
 		$mh = curl_multi_init(); // PHP 5

@@ -176,7 +176,7 @@ class WP_Super_Preload_Admin extends WP_Super_Preload {
 		$active_tab = 0;
 ?>
 <div class="wrap">
-	<?php screen_icon(); ?>
+	<?php #screen_icon(); ?>
 	<h2><?php echo esc_html( get_admin_page_title() ); ?></h2>
 	<h2 class="nav-tab-wrapper">
 		<a href="?page=<?php echo $this->plugin_slug; ?>&amp;tab=0" class="nav-tab <?php echo $active_tab == 0 ? 'nav-tab-active' : ''; ?>"><?php _e( 'Settings', self::TEXTDOMAIN ); ?></a>

@@ -71,25 +71,32 @@ class WP_Super_Fetch {
 
 		foreach ( $url_list as $i => $url ) {
 			$ch_list[$i] = curl_init( $url ); // PHP 4 >= 4.0.2, PHP 5
-			curl_setopt( $ch_list[$i], CURLOPT_FAILONERROR, TRUE );
-			curl_setopt( $ch_list[$i], CURLOPT_RETURNTRANSFER, TRUE );
-			curl_setopt( $ch_list[$i], CURLOPT_FOLLOWLOCATION, TRUE );
-			curl_setopt( $ch_list[$i], CURLOPT_MAXREDIRS, 5 );
-			curl_setopt( $ch_list[$i], CURLOPT_HEADER, FALSE );
 
-			// No cookies
-			curl_setopt( $ch_list[$i], CURLOPT_COOKIE, '' );
-
-			// Ignore SSL Certification
-			curl_setopt( $ch_list[$i], CURLOPT_SSL_VERIFYPEER, FALSE );
-
-			// Set timeout ('0' means indefinitely)
-			curl_setopt( $ch_list[$i], CURLOPT_TIMEOUT, $timeout );
-			curl_setopt( $ch_list[$i], CURLOPT_CONNECTTIMEOUT, $timeout );
-
+			$curl_setopt_defaults = [
+				CURLOPT_FAILONERROR    => TRUE,
+				CURLOPT_RETURNTRANSFER => TRUE,
+				CURLOPT_FOLLOWLOCATION => TRUE,
+				CURLOPT_MAXREDIRS      => 5,
+				CURLOPT_HEADER         => FALSE,
+				// No cookies
+				CURLOPT_COOKIE         => '',
+				// Ignore SSL Certification
+				CURLOPT_SSL_VERIFYPEER => FALSE,
+				// Set timeout ('0' means indefinitely)
+				CURLOPT_TIMEOUT        => $timeout,
+				CURLOPT_CONNECTTIMEOUT => $timeout,
+			];
 			// Set User Agent
 			if ( ! is_null( $user_agent ) )
-				curl_setopt( $ch_list[$i], CURLOPT_USERAGENT, $user_agent );
+				$curl_setopt_defaults[ CURLOPT_USERAGENT ] = $user_agent;
+
+			$curl_options = \apply_filters( 'wp-super-preload\curl_setopt', $curl_setopt_defaults );
+
+			// set curl options coming from filter
+			array_walk( $curl_options, function( $curl_value, $curl_option ) use ($ch_list, $i) {
+				curl_setopt( $ch_list[$i], $curl_option, $curl_value );
+			});
+
 
 			curl_multi_add_handle( $mh, $ch_list[$i] ); // PHP 5
 		}

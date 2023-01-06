@@ -1,0 +1,24 @@
+{
+	"name": "carstingaxion/WP-Super-Preload",
+	"description": "This plugin helps to keep whole pages of your site always being cached in the fresh based on the sitemap.xml and your own settings.",
+    "type": "wordpress-plugin",
+    "keywords": ["wordpress", "wordpress-plugin", "caching", "preload", "warm-cache"],
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Carsten Bach",
+            "email": "mail@carsten-bach.de",
+            "homepage": "https://carsten-bach.de",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "info@figuren.theater",
+        "issues": "https://github.com/carstingaxion/WP-Super-Preload/issues",
+        "source": "https://github.com/carstingaxion/WP-Super-Preload"
+    },
+	"require": {
+        "php": ">=5",
+        "johnpbloch/wordpress": "^3.1"
+	}
+}

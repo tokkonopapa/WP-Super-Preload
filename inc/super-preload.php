@@ -299,7 +299,7 @@ class WP_Super_Preload {
 		if ( $opt_contents['authors'] ) {
 			// @link http://codex.wordpress.org/Function_Reference/get_users
 			// @link http://codex.wordpress.org/Function_Reference/get_author_posts_url
-			$pages = get_users( 'who=authors' ); // @since 3.1.0
+			$pages = get_users( ['capability' => 'edit_posts'] ); // @see https://developer.wordpress.org/reference/classes/wp_user_query/prepare_query/#comment-5643
 			foreach ( $pages as $page ) {
 				$urls[] = $url = get_author_posts_url( $page->ID ); // @since 2.1.0
 				$query = new WP_Query( "author=$page->ID" );

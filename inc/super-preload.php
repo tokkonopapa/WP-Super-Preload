@@ -233,7 +233,9 @@ class WP_Super_Preload {
 	private function add_contents( &$urls, $opt_contents, $home ) {
 		if ( $opt_contents['front_pages'] ) {
 			global $wp_rewrite;
-			$pages = strpos( $wp_rewrite->permalink_structure, 'index.php' ) === FALSE ? "$home/page" : "$home/index.php/page";
+
+			$pager = $wp_rewrite->pagination_base;
+			$pages = strpos( $wp_rewrite->permalink_structure, 'index.php' ) === FALSE ? "$home/$pager" : "$home/index.php/$pager";
 
 			// @link http://codex.wordpress.org/Class_Reference/WP_Query
 			$query = new WP_Query( 'post_type=post' ); // 'post_status=publish'
@@ -245,7 +247,7 @@ class WP_Super_Preload {
 /*
 			$archives = paginate_links( array(
 				'base' =>  "$home/%_%",
-				'format' => "page/%#%",
+				'format' => "$pager/%#%",
 				'total' => $n,
 				'show_all' => TRUE,
 			) ); // @since 2.7.0
@@ -276,7 +278,7 @@ class WP_Super_Preload {
 				$query = new WP_Query( "cat=$page->term_id" );
 				$n = $query->max_num_pages;
 				for ( $i = 2; $i <= $n; $i++ ) {
-					$urls[] = untrailingslashit( $url ) . "/page/$i/";
+					$urls[] = untrailingslashit( $url ) . "/$pager/$i/";
 				}
 				unset( $query );
 			}
@@ -290,7 +292,7 @@ class WP_Super_Preload {
 				$query = new WP_Query( "tag_id=$page->term_id" );
 				$n = $query->max_num_pages;
 				for ( $i = 2; $i <= $n; $i++ ) {
-					$urls[] = untrailingslashit( $url ) . "/page/$i/";
+					$urls[] = untrailingslashit( $url ) . "/$pager/$i/";
 				}
 				unset( $query );
 			}
@@ -305,7 +307,7 @@ class WP_Super_Preload {
 				$query = new WP_Query( "author=$page->ID" );
 				$n = $query->max_num_pages;
 				for ( $i = 2; $i < $n; $i++ ) {
-					$urls[] = untrailingslashit( $url ) . "/page/$i/";
+					$urls[] = untrailingslashit( $url ) . "/$pager/$i/";
 				}
 				unset( $query );
 			}

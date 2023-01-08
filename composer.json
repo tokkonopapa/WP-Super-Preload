@@ -1,5 +1,5 @@
 {
-	"name": "carstingaxion/WP-Super-Preload",
+	"name": "carstingaxion/wp-super-preload",
 	"description": "This plugin helps to keep whole pages of your site always being cached in the fresh based on the sitemap.xml and your own settings.",
     "type": "wordpress-plugin",
     "keywords": ["wordpress", "wordpress-plugin", "caching", "preload", "warm-cache"],

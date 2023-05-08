@@ -231,10 +231,12 @@ class WP_Super_Preload {
 	 * Set URLs of additional contents to be preloaded
 	 */
 	private function add_contents( &$urls, $opt_contents, $home ) {
-		if ( $opt_contents['front_pages'] ) {
 			global $wp_rewrite;
 
 			$pager = $wp_rewrite->pagination_base;
+		
+
+		if ( $opt_contents['front_pages'] ) {
 			$pages = strpos( $wp_rewrite->permalink_structure, 'index.php' ) === FALSE ? "$home/$pager" : "$home/index.php/$pager";
 
 			// @link http://codex.wordpress.org/Class_Reference/WP_Query

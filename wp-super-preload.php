@@ -11,13 +11,13 @@
  * Plugin Name: WP Super Preload
  * Plugin URI: https://github.com/carstingaxion/WP-Super-Preload
  * Description: This plugin helps to keep whole pages of your site always being cached in the fresh based on the sitemap.xml and your own settings. (based on http://wordpress.org/extend/plugins/wp-super-preload/)
- * Version: 1.1.0
+ * Version: 1.2.3
  * Author: tokkonopapa, carstingaxion
  * Author URI: http://tokkono.cute.coocan.jp/blog/slow/
  * Text Domain: super-preload
  * Domain Path: /lang/
  * Requires: WordPress 3.1.0 or higher / PHP 5 with libcurl
- * Compatible up to: WordPress 6.1.1
+ * Compatible up to: WordPress 6.2
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
  */
 

@@ -231,9 +231,13 @@ class WP_Super_Preload {
 	 * Set URLs of additional contents to be preloaded
 	 */
 	private function add_contents( &$urls, $opt_contents, $home ) {
-		if ( $opt_contents['front_pages'] ) {
 			global $wp_rewrite;
-			$pages = strpos( $wp_rewrite->permalink_structure, 'index.php' ) === FALSE ? "$home/page" : "$home/index.php/page";
+
+			$pager = $wp_rewrite->pagination_base;
+		
+
+		if ( $opt_contents['front_pages'] ) {
+			$pages = strpos( $wp_rewrite->permalink_structure, 'index.php' ) === FALSE ? "$home/$pager" : "$home/index.php/$pager";
 
 			// @link http://codex.wordpress.org/Class_Reference/WP_Query
 			$query = new WP_Query( 'post_type=post' ); // 'post_status=publish'
@@ -245,7 +249,7 @@ class WP_Super_Preload {
 /*
 			$archives = paginate_links( array(
 				'base' =>  "$home/%_%",
-				'format' => "page/%#%",
+				'format' => "$pager/%#%",
 				'total' => $n,
 				'show_all' => TRUE,
 			) ); // @since 2.7.0
@@ -276,7 +280,7 @@ class WP_Super_Preload {
 				$query = new WP_Query( "cat=$page->term_id" );
 				$n = $query->max_num_pages;
 				for ( $i = 2; $i <= $n; $i++ ) {
-					$urls[] = untrailingslashit( $url ) . "/page/$i/";
+					$urls[] = untrailingslashit( $url ) . "/$pager/$i/";
 				}
 				unset( $query );
 			}
@@ -290,7 +294,7 @@ class WP_Super_Preload {
 				$query = new WP_Query( "tag_id=$page->term_id" );
 				$n = $query->max_num_pages;
 				for ( $i = 2; $i <= $n; $i++ ) {
-					$urls[] = untrailingslashit( $url ) . "/page/$i/";
+					$urls[] = untrailingslashit( $url ) . "/$pager/$i/";
 				}
 				unset( $query );
 			}
@@ -299,13 +303,13 @@ class WP_Super_Preload {
 		if ( $opt_contents['authors'] ) {
 			// @link http://codex.wordpress.org/Function_Reference/get_users
 			// @link http://codex.wordpress.org/Function_Reference/get_author_posts_url
-			$pages = get_users( 'who=authors' ); // @since 3.1.0
+			$pages = get_users( ['capability' => 'edit_posts'] ); // @see https://developer.wordpress.org/reference/classes/wp_user_query/prepare_query/#comment-5643
 			foreach ( $pages as $page ) {
 				$urls[] = $url = get_author_posts_url( $page->ID ); // @since 2.1.0
 				$query = new WP_Query( "author=$page->ID" );
 				$n = $query->max_num_pages;
 				for ( $i = 2; $i < $n; $i++ ) {
-					$urls[] = untrailingslashit( $url ) . "/page/$i/";
+					$urls[] = untrailingslashit( $url ) . "/$pager/$i/";
 				}
 				unset( $query );
 			}
